@@ -4,6 +4,13 @@ import { SidebarProvider } from "./SidebarProvider";
 
 export function activate(context: vscode.ExtensionContext) {
   const sidebarProvider = new SidebarProvider(context.extensionUri);
+  const item = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Right
+  );
+  item.text = "$(beaker) Add Todo";
+  item.command = "vsfirst.addTodo";
+  item.show();
+
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider(
       "vsfirst-sidebar",

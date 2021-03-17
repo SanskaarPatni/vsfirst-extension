@@ -9,7 +9,7 @@
       const message = event.data; // The json data that the extension sent
       switch (message.type) {
         case "new-todo":
-          todos = [{ text: message.value, completed: false }];
+          todos = [{ text: message.value, completed: false }, ...todos];
           break;
       }
     });
