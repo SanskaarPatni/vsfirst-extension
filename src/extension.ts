@@ -10,6 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
       sidebarProvider
     )
   );
+
   context.subscriptions.push(
     vscode.commands.registerCommand("vsfirst.helloWorld", () => {
       HelloWorldPanel.createOrShow(context.extensionUri);
@@ -23,11 +24,27 @@ export function activate(context: vscode.ExtensionContext) {
       await vscode.commands.executeCommand(
         "workbench.view.extension.vsfirst-sidebar-view"
       );
-      setTimeout(() => {
+      /*setTimeout(() => {
         vscode.commands.executeCommand(
           "workbench.action.webview.openDeveloperTools"
         );
-      }, 500);
+      }, 500);*/
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand("vsfirst.addTodo", () => {
+      const { activeTextEditor } = vscode.window;
+      if (!activeTextEditor) {
+        vscode.window.showErrorMessage("No text editor");
+        return;
+      }
+      const text = activeTextEditor.document.getText(
+        activeTextEditor.selection
+      );
+      sidebarProvider._view?.webview.postMessage({
+        type: "new-todo",
+        value: text,
+      });
     })
   );
   // context.subscriptions.push(

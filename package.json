@@ -12,6 +12,7 @@
   "activationEvents": [
     "onCommand:vsfirst.helloWorld",
     "onCommand:vsfirst.refresh",
+    "onCommand:vsfirst.addTodo",
     "onView:vsfirst-sidebar"
   ],
   "main": "./dist/extension.js",
@@ -46,6 +47,11 @@
         "command": "vsfirst.refresh",
         "category": "VSFirst",
         "title": "Refresh Webview"
+      },
+      {
+        "command": "vsfirst.addTodo",
+        "category": "VSFirst",
+        "title": "Add Todo"
       }
     ]
   },
