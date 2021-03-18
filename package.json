@@ -13,6 +13,7 @@
     "onCommand:vsfirst.helloWorld",
     "onCommand:vsfirst.refresh",
     "onCommand:vsfirst.addTodo",
+    "onCommand:vsfirst.authenticate",
     "onView:vsfirst-sidebar"
   ],
   "main": "./dist/extension.js",
@@ -52,6 +53,11 @@
         "command": "vsfirst.addTodo",
         "category": "VSFirst",
         "title": "Add Todo"
+      },
+      {
+        "command": "vsfirst.authenticate",
+        "category": "VSFirst",
+        "title": "Authenticate"
       }
     ]
   },
@@ -94,5 +100,9 @@
     "vscode-test": "^1.5.0",
     "webpack": "^5.19.0",
     "webpack-cli": "^4.4.0"
+  },
+  "dependencies": {
+    "@types/polka": "^0.5.2",
+    "polka": "^0.5.2"
   }
 }
