@@ -1,38 +1,71 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import type { User } from "../types";
-
+  export let accessToken: string;
   let text = "";
-  let todos: Array<{ text: String; completed: boolean }> = [];
+  let todos: Array<{ text: String; completed: boolean; id: number }> = [];
   export let user: User;
+
+  const addTodo = async (t: string) => {
+    const response = await fetch(`http://localhost:3002/todo`, {
+      method: "POST",
+      body: JSON.stringify({
+        text: t,
+      }),
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const { todo } = await response.json();
+    todos = [todo, ...todos];
+  };
   onMount(async () => {
     window.addEventListener("message", async (event) => {
       const message = event.data;
       switch (message.type) {
         case "new-todo":
-          todos = [{ text: message.value, completed: false }, ...todos];
+          await addTodo(message.value);
           break;
       }
     });
-    tsvscode.postMessage({ type: "get-token", value: undefined });
+    const response = await fetch(`http://localhost:3002/todo`, {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    });
+    const payload = await response.json();
+    todos = payload.todos;
   });
 </script>
 
 <div>Hello {user.name}</div>
 <form
-  on:submit|preventDefault={() => {
-    todos = [{ text, completed: false }, ...todos];
+  on:submit|preventDefault={async () => {
+    //todos = [{ text, completed: false }, ...todos];
+    //since now we have an post api for todo
+    addTodo(text);
     text = "";
   }}
 >
   <input bind:value={text} />
 </form>
 <ul>
-  {#each todos as todo (todo.text)}
+  {#each todos as todo (todo.id)}
     <li
       class:complete={todo.completed}
-      on:click={() => {
+      on:click={async () => {
         todo.completed = !todo.completed;
+        const response = await fetch(`http://localhost:3002/todo`, {
+          method: "PUT",
+          body: JSON.stringify({
+            id: todo.id,
+          }),
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${accessToken}`,
+          },
+        });
       }}
     >
       {todo.text}
