@@ -5,6 +5,12 @@
   let accessToken = "";
   let loading = true;
   let user: User | null = null;
+  let page: "todos" | "credits" = tsvscode.getState()?.page || "todos";
+
+  $: {
+    tsvscode.setState({ page });
+  }
+
   onMount(async () => {
     window.addEventListener("message", async (event) => {
       const message = event.data;
@@ -29,7 +35,21 @@
 {#if loading}
   <div>Loading...</div>
 {:else if user}
-  <Todos {user} {accessToken} />
+  {#if page === "todos"}
+    <Todos {user} {accessToken} />
+    <button
+      on:click={() => {
+        page = "credits";
+      }}>Credits</button
+    >
+  {:else}
+    <div>Credits: Ben Awad YT Channel</div>
+    <button
+      on:click={() => {
+        page = "todos";
+      }}>Go back</button
+    >
+  {/if}
   <button
     on:click={() => {
       accessToken = "";
