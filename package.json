@@ -1,62 +1,63 @@
 {
-  "name": "vsfirst",
-  "displayName": "VSfirst",
-  "description": "Learning VSCode extensions",
+  "name": "vstodo",
+  "displayName": "VSTodo",
+  "description": "Credits @benawad",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.53.0"
   },
+  "publisher": "SanskaarPatni",
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vsfirst.helloWorld",
-    "onCommand:vsfirst.refresh",
-    "onCommand:vsfirst.addTodo",
-    "onCommand:vsfirst.authenticate",
-    "onView:vsfirst-sidebar"
+    "onCommand:vstodo.helloWorld",
+    "onCommand:vstodo.refresh",
+    "onCommand:vstodo.addTodo",
+    "onCommand:vstodo.authenticate",
+    "onView:vstodo-sidebar"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "vsfirst-sidebar-view",
-          "title": "VSFirst",
+          "id": "vstodo-sidebar-view",
+          "title": "VSTodo",
           "icon": "media/checklist.svg"
         }
       ]
     },
     "views": {
-      "vsfirst-sidebar-view": [
+      "vstodo-sidebar-view": [
         {
           "type": "webview",
-          "id": "vsfirst-sidebar",
-          "name": "VSFirst",
+          "id": "vstodo-sidebar",
+          "name": "VSTodo",
           "icon": "media/checklist.svg",
-          "contextualTitle": "VSFirst"
+          "contextualTitle": "VSTodo"
         }
       ]
     },
     "commands": [
       {
-        "command": "vsfirst.helloWorld",
-        "category": "VSFirst",
+        "command": "vstodo.helloWorld",
+        "category": "VSTodo",
         "title": "Hello World"
       },
       {
-        "command": "vsfirst.refresh",
-        "category": "VSFirst",
+        "command": "vstodo.refresh",
+        "category": "VSTodo",
         "title": "Refresh Webview"
       },
       {
-        "command": "vsfirst.addTodo",
-        "category": "VSFirst",
+        "command": "vstodo.addTodo",
+        "category": "VSTodo",
         "title": "Add Todo"
       },
       {
-        "command": "vsfirst.authenticate",
-        "category": "VSFirst",
+        "command": "vstodo.authenticate",
+        "category": "VSTodo",
         "title": "Authenticate"
       }
     ]

@@ -11,38 +11,35 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.StatusBarAlignment.Right
   );
   item.text = "$(beaker) Add Todo";
-  item.command = "vsfirst.addTodo";
+  item.command = "vstodo.addTodo";
   item.show();
 
   context.subscriptions.push(
-    vscode.window.registerWebviewViewProvider(
-      "vsfirst-sidebar",
-      sidebarProvider
-    )
+    vscode.window.registerWebviewViewProvider("vstodo-sidebar", sidebarProvider)
   );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("vsfirst.helloWorld", () => {
+    vscode.commands.registerCommand("vstodo.helloWorld", () => {
       // HelloWorldPanel.createOrShow(context.extensionUri);
       vscode.window.showErrorMessage("token" + TokenManager.getToken());
     })
   );
   context.subscriptions.push(
-    vscode.commands.registerCommand("vsfirst.authenticate", () => {
+    vscode.commands.registerCommand("vstodo.authenticate", () => {
       try {
-        authenticate();
+        authenticate(() => {});
       } catch (err) {
         console.log(err);
       }
     })
   );
   context.subscriptions.push(
-    vscode.commands.registerCommand("vsfirst.refresh", async () => {
+    vscode.commands.registerCommand("vstodo.refresh", async () => {
       // HelloWorldPanel.kill();
       // HelloWorldPanel.createOrShow(context.extensionUri);
       await vscode.commands.executeCommand("workbench.action.closeSidebar");
       await vscode.commands.executeCommand(
-        "workbench.view.extension.vsfirst-sidebar-view"
+        "workbench.view.extension.vstodo-sidebar-view"
       );
       /*setTimeout(() => {
         vscode.commands.executeCommand(
@@ -52,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
   context.subscriptions.push(
-    vscode.commands.registerCommand("vsfirst.addTodo", () => {
+    vscode.commands.registerCommand("vstodo.addTodo", () => {
       const { activeTextEditor } = vscode.window;
       if (!activeTextEditor) {
         vscode.window.showErrorMessage("No text editor");

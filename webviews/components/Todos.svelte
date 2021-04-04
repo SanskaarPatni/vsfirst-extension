@@ -20,6 +20,19 @@
     const { todo } = await response.json();
     todos = [todo, ...todos];
   };
+  const deleteTodo = async (id: number) => {
+    const response = await fetch(`http://localhost:3002/todo`, {
+      method: "DELETE",
+      body: JSON.stringify({
+        id,
+      }),
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
+    });
+    todos = todos.filter((todo) => todo.id != id);
+  };
   onMount(async () => {
     window.addEventListener("message", async (event) => {
       const message = event.data;
@@ -70,6 +83,7 @@
     >
       {todo.text}
     </li>
+    <button on:click={() => deleteTodo(todo.id)}>Delete todo</button>
   {/each}
 </ul>
 

@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { apiBaseUrl } from "./constants";
+import { apiBaseUrlProd, apiBaseUrlDev } from "./constants";
 import * as polka from "polka";
 import { TokenManager } from "./TokenManager";
 
@@ -26,7 +26,7 @@ export const authenticate = (fn: () => void) => {
     } else {
       vscode.commands.executeCommand(
         "vscode.open",
-        vscode.Uri.parse(`${apiBaseUrl}/auth/github`)
+        vscode.Uri.parse(`${apiBaseUrlDev}/auth/github`)
       );
     }
   });
