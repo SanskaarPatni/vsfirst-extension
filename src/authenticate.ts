@@ -26,7 +26,7 @@ export const authenticate = (fn: () => void) => {
     } else {
       vscode.commands.executeCommand(
         "vscode.open",
-        vscode.Uri.parse(`${apiBaseUrlDev}/auth/github`)
+        vscode.Uri.parse(`${apiBaseUrlProd}/auth/github`)
       );
     }
   });

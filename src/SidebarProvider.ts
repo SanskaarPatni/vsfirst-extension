@@ -100,7 +100,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
               <link href="${styleMainUri}" rel="stylesheet">
               <script nonce="${nonce}">  
                 const tsvscode = acquireVsCodeApi();
-                const apiBaseUrl=${JSON.stringify(apiBaseUrlDev)};
+                const apiBaseUrl=${JSON.stringify(apiBaseUrlProd)};
               </script>
               </head>
             <body>

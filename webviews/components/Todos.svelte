@@ -7,30 +7,38 @@
   export let user: User;
 
   const addTodo = async (t: string) => {
-    const response = await fetch(`http://localhost:3002/todo`, {
-      method: "POST",
-      body: JSON.stringify({
-        text: t,
-      }),
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const response = await fetch(
+      "https://vstodo-mysql-server.herokuapp.com/todo" ||
+        `http://localhost:3002/todo`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          text: t,
+        }),
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     const { todo } = await response.json();
     todos = [todo, ...todos];
   };
   const deleteTodo = async (id: number) => {
-    const response = await fetch(`http://localhost:3002/todo`, {
-      method: "DELETE",
-      body: JSON.stringify({
-        id,
-      }),
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const response = await fetch(
+      "https://vstodo-mysql-server.herokuapp.com/todo" ||
+        `http://localhost:3002/todo`,
+      {
+        method: "DELETE",
+        body: JSON.stringify({
+          id,
+        }),
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     todos = todos.filter((todo) => todo.id != id);
   };
   onMount(async () => {
@@ -42,11 +50,15 @@
           break;
       }
     });
-    const response = await fetch(`http://localhost:3002/todo`, {
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const response = await fetch(
+      "https://vstodo-mysql-server.herokuapp.com/todo" ||
+        `http://localhost:3002/todo`,
+      {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     const payload = await response.json();
     todos = payload.todos;
   });
@@ -69,16 +81,20 @@
       class:complete={todo.completed}
       on:click={async () => {
         todo.completed = !todo.completed;
-        const response = await fetch(`http://localhost:3002/todo`, {
-          method: "PUT",
-          body: JSON.stringify({
-            id: todo.id,
-          }),
-          headers: {
-            "content-type": "application/json",
-            authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const response = await fetch(
+          "https://vstodo-mysql-server.herokuapp.com/todo" ||
+            `http://localhost:3002/todo`,
+          {
+            method: "PUT",
+            body: JSON.stringify({
+              id: todo.id,
+            }),
+            headers: {
+              "content-type": "application/json",
+              authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
       }}
     >
       {todo.text}
