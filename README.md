@@ -1,9 +1,7 @@
-# vstodo README
+# VSTodo
 
-My First VSCode Extension
+A VSCode Extension to improve Productivity.
 
 ## Features
 
-Maintain a list of todos that allow a user to improve his time management skills.
-
-GitHub authentication is required. New features to be released soon.
+A user can improve his time management skills by creating and maintaining a list of todos. Extension requires the user to be logged in using Github to have a personalized todo list. New features to be released soon.
