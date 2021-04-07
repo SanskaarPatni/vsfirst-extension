@@ -103,7 +103,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
                 const apiBaseUrl=${JSON.stringify(apiBaseUrlProd)};
               </script>
               </head>
-            <body>
+            <body>List: 
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 			</html>`;

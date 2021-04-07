@@ -23,8 +23,10 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand("vstodo.helloWorld", () => {
-      // HelloWorldPanel.createOrShow(context.extensionUri);
-      vscode.window.showErrorMessage("token" + TokenManager.getToken());
+      HelloWorldPanel.createOrShow(context.extensionUri);
+      vscode.window.showErrorMessage(
+        "Here is your token " + TokenManager.getToken()
+      );
     })
   );
   context.subscriptions.push(
@@ -42,7 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
       // HelloWorldPanel.createOrShow(context.extensionUri);
       await vscode.commands.executeCommand("workbench.action.closeSidebar");
       await vscode.commands.executeCommand(
-        "workbench.view.extension.vstodo-sidebar-view"
+        "workbench.view.extension.vstodo-shanx-sidebar-view"
       );
       /*setTimeout(() => {
         vscode.commands.executeCommand(
