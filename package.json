@@ -2,7 +2,7 @@
   "name": "vstodo",
   "displayName": "VSTodo",
   "description": "Credits @benawad",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.53.0"
   },
@@ -15,24 +15,24 @@
     "onCommand:vstodo.refresh",
     "onCommand:vstodo.addTodo",
     "onCommand:vstodo.authenticate",
-    "onView:vstodo-sidebar"
+    "onView:vstodo-shanx-sidebar"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "vstodo-sidebar-view",
+          "id": "vstodo-shanx-sidebar-view",
           "title": "VSTodo",
           "icon": "media/checklist.svg"
         }
       ]
     },
     "views": {
-      "vstodo-sidebar-view": [
+      "vstodo-shanx-sidebar-view": [
         {
           "type": "webview",
-          "id": "vstodo-sidebar",
+          "id": "vstodo-shanx-sidebar",
           "name": "VSTodo",
           "icon": "media/checklist.svg",
           "contextualTitle": "VSTodo"

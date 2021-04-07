@@ -15,7 +15,10 @@ export function activate(context: vscode.ExtensionContext) {
   item.show();
 
   context.subscriptions.push(
-    vscode.window.registerWebviewViewProvider("vstodo-sidebar", sidebarProvider)
+    vscode.window.registerWebviewViewProvider(
+      "vstodo-shanx-sidebar",
+      sidebarProvider
+    )
   );
 
   context.subscriptions.push(
